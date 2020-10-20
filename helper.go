@@ -45,8 +45,8 @@ type uniformResourceLocator struct {
 /*########################################
   ########################################
   Helper Functions
-  (redirectParser, parseResponse, 
-   parseURL, sendRequest)
+  (redirectParser, responseParser, 
+   uniformResourceLocatorParser, sendGetRequest)
   ########################################
   ########################################
 */
