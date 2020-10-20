@@ -7,7 +7,6 @@ import (
 	"regexp"
 	"sort"
 	"strconv"
-//	"strings"
 	"time"
 )
 
@@ -87,9 +86,9 @@ func main() {
 	index 			:= 0
 
 	/*######################################################
-      Parses all args flags from input while error handling
-      ######################################################
-    */
+      	  Parses all args flags from input while error handling
+      	  ######################################################
+    	*/
 	for index = 0; index < len(args); index++ {
 		switch arg := args[index]; arg {
 			case HELPFLAG:
@@ -124,11 +123,11 @@ func main() {
 				/* https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url */
 				//url is case sensitive
 				url = args[index+1]		
-				isURL,_ := regexp.MatchString(
+				validURL,_ := regexp.MatchString(
 					`[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)`, 
 					url)
 
-				if isURL == false {
+				if validURL == false {
 					fmt.Printf("Please enter acceptable <URL>, it is not in acceptable form\n")
 					os.Exit(NONSUCCESSEXIT)
 				} else if url == "" {
@@ -147,18 +146,18 @@ func main() {
 	errors 			:= make([]int, 0, numRequest)
 	
 	/*#######################################
-      Delegate to Multi-Thread helper method
-      #######################################
-    */
+          Delegate to Multi-Thread helper method
+          #######################################
+    	*/
 	index = 0
 	for index = 0; numRequest > index; index++  {
 		go handleRequests(requests, newURL)
 	}
 	
 	/*#######################################
-      Organize data and spit out error codes
-      #######################################
-    */
+          Organize data and spit out error codes
+          #######################################
+    	*/
 	index = 0
 	for request := range requests {
 		profile = append(profile, request)
@@ -186,9 +185,9 @@ func main() {
 	}
 
 	/*##############################
-      Logic to Output Statistics
-      ##############################
-    */
+          Logic to Output Statistics
+      	  ##############################
+    	*/
 	sort.Ints(times)
 	sort.Ints(size)
 	mid 			:= int(math.Floor(float64(len(times))/2.0))
@@ -204,9 +203,9 @@ func main() {
 
 
 	/*##############################
-      Outputs Statistics to Console
-      ##############################
-    */
+      	  Outputs Statistics to Console
+      	  ##############################
+    	*/
 	fmt.Println("**--- Profiling Statistics for " + url + " ---**")
 	fmt.Println("Number of Requests:", numRequest)
 	fmt.Printf("Fastest Time: %d (ms)\n", fastestTime)
